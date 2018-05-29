@@ -8,6 +8,14 @@
 
 import UIKit
 
+enum Environment: String {
+  case development = "Development"
+  case production = "Production"
+  case none = "None"
+}
+
+var environment: Environment = .none
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -16,6 +24,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
+    
+//    let environment = "Development"
+//    let environment = "Production"
+    
+//    environment = .production
+//
+    
+    #if DEVELOPMENT
+    environment = .development
+    #else
+    environment = .production
+    #endif
+    
+    switch environment {
+    case .none:
+      print("Environment is: none")
+    case .development:
+      print("Environment is: development")
+    case .production:
+      print("Environment is: production")
+    }
+
+    
     return true
   }
 
